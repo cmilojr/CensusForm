@@ -14,9 +14,9 @@ const Main = () => {
             height: windowHeight,
         }}>
             { logged ?
-                <AuthScreen />
+                <></>  
             : 
-                <></>
+                <AuthScreen />
             }
         </View>
     );
