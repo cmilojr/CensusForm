@@ -1,24 +1,27 @@
-import React from 'react';
-import {View, Text, Dimensions} from 'react-native';
+import React, { useState } from 'react';
+import {View, Dimensions} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 import AuthScreen from './view/Auth/AuthScreen';
-
+import FormStack from './view/Form/FormStack'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 
 const Main = () => {
-    var logged = false
+const [logginState, setLogginState] = useState(false)
     return (
-        <View style={{
-            width: windowWidth,
-            height: windowHeight,
-        }}>
-            { logged ?
-                <></>  
-            : 
-                <AuthScreen />
-            }
-        </View>
+        <NavigationContainer>
+            <View style={{
+                width: windowWidth,
+                height: windowHeight,
+            }}>
+                { logginState ?
+                    <FormStack />
+                : 
+                    <AuthScreen setLogginState={setLogginState}/>
+                }
+            </View>
+        </NavigationContainer>
     );
 }
 

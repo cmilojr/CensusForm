@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, ShadowPropTypesIOS } from 'react-native'
 import { Button } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {TextInput} from '../shared/TextInput'
-const AuthScreen = () => {
+const AuthScreen = (props) => {
     const [logginInfo, setLogginInfo] = useState({userName: '', password: ''});
     const [showPassword, setShowPassword] = useState(false);
+    const {setLogginState} = props
     const onSummit = () => {
         console.log("summit")
+        setLogginState(true)
     }
 
     return (
