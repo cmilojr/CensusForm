@@ -10,7 +10,7 @@ export const TextInput = (props) => {
     label = '',
     value = '',
     onChangeText,
-    editable = true,
+    editable,
     secureTextEntry = false,
     rightIcon,
     type,
