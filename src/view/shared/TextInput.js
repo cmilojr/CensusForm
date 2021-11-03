@@ -1,9 +1,7 @@
-//import {useTheme} from '@react-navigation/native';
 import React, {useEffect, useState, useRef} from 'react';
 import {KeyboardTypeOptions, StyleSheet} from 'react-native';
 import {Input} from 'react-native-elements';
 import Icons from 'react-native-vector-icons/MaterialIcons';
-//import {ColorsInterface, FontBody} from '@styles';
 
 export const TextInput = (props) => {
   const {
