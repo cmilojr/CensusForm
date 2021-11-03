@@ -23,14 +23,14 @@ const CheckAnswer = (props) => {
                 />
             <Text style={{
                 marginLeft: 10,
-                fontSize: 23
+                fontSize: 19
             }}>{answerText}</Text>
         </Pressable>
     )
 }
 
 export const CheckQuestion = (props) => {
-    const {question, answers, setAswer} = props
+    const {question, answers, setAswer, showOther} = props
     const [selected, setSelected] = useState("")
     const [otherAnswer, setOtherAnswer] = useState("")
     
@@ -71,18 +71,27 @@ export const CheckQuestion = (props) => {
                         />
                 )
             })}
-            <TextInput 
-                onChangeText={(val) => setOtherAnswer(val)}
-                placeholder={"Other answer"}
-                value={selected === "" ? otherAnswer : ""}
-                type="text" 
-                />
+            {
+                showOther && 
+                    <TextInput 
+                    onChangeText={(val) => setOtherAnswer(val)}
+                    placeholder={"Other answer"}
+                    value={selected === "" ? otherAnswer : ""}
+                    type="text" 
+                    />
+            }
         </View>
     )
 }
 
 export const TextQuestion = (props) => {
-    const {question, placeholder, onChangeQuestion, valueQuestion} = props
+    const {
+        question, 
+        placeholder, 
+        onChangeQuestion, 
+        valueQuestion, 
+        multiline
+    } = props
     return (
         <View style={{
             marginHorizontal: 20,
@@ -105,6 +114,7 @@ export const TextQuestion = (props) => {
                 placeholder={placeholder}
                 value={valueQuestion}
                 type="text" 
+                multiline={multiline}
                 />
         </View>
     )

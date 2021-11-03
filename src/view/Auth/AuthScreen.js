@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet, ShadowPropTypesIOS } from 'react-native'
+import { Text, View, StyleSheet, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {TextInput} from '../shared/TextInput'
@@ -15,7 +15,20 @@ const AuthScreen = (props) => {
     return (
         <KeyboardAwareScrollView contentContainerStyle={styles.container}>
             <View style={styles.content}>
-                <Text style={{textAlign: 'center', fontSize: 43}}>Bolumbia Census Form</Text>
+
+            <View style={{
+                backgroundColor: 'white',
+                margin: 20,
+                padding: 20,
+                borderRadius: 20,
+            }}>
+                <Image
+                    style={{
+                        width: 250,
+                        height: 150,
+                      }}
+                    source={require('../../../assets/LOGO.png')}
+                />
                 <TextInput
                     placeholder="Usuario"
                     type="text"
@@ -35,11 +48,12 @@ const AuthScreen = (props) => {
                     //onError={e => setIsErrorPassword(e)}
                 />
                 <Button
-                    title="ENTRAR"
+                    title="Login"
                     onPress={() => onSummit()}
                     containerStyle={{height: 40}}
                     fontColor="textBgPrimary"
                 />
+            </View>
             </View>
         </KeyboardAwareScrollView>
     )

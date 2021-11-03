@@ -18,6 +18,7 @@ export const TextInput = (props) => {
     onError,
     onRightIconPress,
     onLefttIconPress,
+    multiline,
   } = props
 
   const _ref = useRef(null);
@@ -153,7 +154,7 @@ export const TextInput = (props) => {
       marginLeft: 0,
     },
     inputContainerStyle: {
-      height: 40,
+      height: multiline ? 200 : 40,
       width: '100%',
       marginTop: 10,
       textAlign: 'justify',
@@ -175,6 +176,7 @@ export const TextInput = (props) => {
       onChangeText={onChangeText}
       editable={editable}
       secureTextEntry={secureTextEntry}
+      multiline={multiline ? true : false}
       leftIcon={
         <Icons
           name={leftIcon}
