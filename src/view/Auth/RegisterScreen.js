@@ -1,25 +1,24 @@
 import React, { useState } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import { Text, View, StyleSheet, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from '../shared/TextInput'
-import { signInWithEmailAndPassword, auth } from '../../../firebase';
+import { auth, createUserWithEmailAndPassword } from "../../../firebase";
 
-const AuthScreen = (props) => {
-    const [logginInfo, setLogginInfo] = useState({ email: '', password: '' });
-    const [showPassword, setShowPassword] = useState(false);
-
+const RegisterScreen = (props) => {
+    const [registerInfo, setRegisterInfo] = useState({ email: '', password: '' });
     const onSummit = () => {
-        signInWithEmailAndPassword(auth, logginInfo.email, logginInfo.password)
+            createUserWithEmailAndPassword(auth, registerInfo.email, registerInfo.password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                
+                setRegisterInfoInfo({ email: '', password: '' })
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-            });
+            })
+        props.navigation.goBack()
     }
 
     return (
@@ -46,37 +45,31 @@ const AuthScreen = (props) => {
                     <TextInput
                         placeholder="Email"
                         type="text"
-                        onChangeText={event => setLogginInfo({ ...logginInfo, userName: event })}
-                        value={logginInfo.userName}
+                        onChangeText={event => setRegisterInfo({ ...registerInfo, email: event })}
+                        value={registerInfo.email}
                         rightIcon={'tag'}
                     //onError={e => setIsErroruserName(e)}
                     />
                     <TextInput
                         placeholder="Password"
                         type="password"
-                        onChangeText={event => setLogginInfo({ ...logginInfo, password: event })}
-                        value={logginInfo.password}
+                        onChangeText={event => setRegisterInfo({ ...registerInfo, password: event })}
+                        value={registerInfo.password}
                         rightIcon={'insert-drive-file'}
                     //onError={e => setIsErrorPassword(e)}
                     />
                     <Button
-                        title="Login"
+                        title="Register"
                         onPress={() => onSummit()}
                         containerStyle={{ height: 40 }}
                         fontColor="textBgPrimary"
                     />
                 </View>
-                <View style={{
+                {/* <View style={{
                     flexDirection: 'row',
                     justifyContent: 'center',
                 }}>
                     <Button
-                        title="Sign Up"
-                        onPress={() => props.navigation.navigate("RegisterScreen")}
-                        containerStyle={{ height: 40, margin: 20 }}
-                        fontColor="textBgPrimary"
-                    />
-                    {/* <Button
                         title="FAQ"
                         onPress={() => setShowFAQ(true)}
                         containerStyle={{height: 40, margin: 20}}
@@ -87,8 +80,8 @@ const AuthScreen = (props) => {
                         onPress={() => setShowHD(true)}
                         containerStyle={{height: 40, margin: 20}}
                         fontColor="textBgPrimary"
-                    /> */}
-                </View>
+                    />
+                </View> */}
             </View>
         </KeyboardAwareScrollView>
     )
@@ -108,4 +101,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AuthScreen
+export default RegisterScreen

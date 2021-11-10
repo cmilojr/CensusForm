@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
-import {View, Dimensions} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import AuthScreen from './view/Auth/AuthScreen';
+import { View, Dimensions } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import FormStack from './view/Form/FormStack'
-import FAQScreen from './view/FAQ/FAQScreen'
-import ChatBoxScreen from './view/ChatBox/ChatBoxScreen'
-
+import AuthStack from './view/Auth/AuthStack';
+import { onAuthStateChanged, auth } from '../firebase';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Main = () => {
     const [logginState, setLogginState] = useState(false)
-    const [showFAQ, setShowFAQ] = useState(false)
-    const [showHD, setShowHD] = useState(false)
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            const uid = user.uid;
+            setLogginState(true)
+        } else {
+            // User is signed out
+            setLogginState(false)
+        }
+    });
 
     return (
         <NavigationContainer>
@@ -20,15 +27,10 @@ const Main = () => {
                 width: windowWidth,
                 height: windowHeight,
             }}>
-                { logginState ?
+                {logginState ?
                     <FormStack />
-                : 
-                    showFAQ ? <FAQScreen setShowFAQ={setShowFAQ} showBack={true}/> :
-                    showHD ? <ChatBoxScreen setShowHD={setShowHD} showBack={true}/> :
-                        <AuthScreen 
-                            setLogginState={setLogginState}
-                            setShowFAQ={setShowFAQ}
-                            setShowHD={setShowHD}/>
+                    :
+                    <AuthStack />
                 }
             </View>
         </NavigationContainer>
