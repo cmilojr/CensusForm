@@ -1,6 +1,20 @@
 // Import the functions you need from the SDKs you need
 import * as firebase from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+  child,
+  get,
+} from "firebase/database";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword
+} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,10 +38,34 @@ if (firebase.getApps().length === 0) {
 }
 
 const auth = getAuth()
+const db = getDatabase(app);
+
+const writeUserData = (route, obj) => {
+  set(ref(db, route), obj);
+}
+
+const readData = (route) => {
+  const dbRef = ref(getDatabase());
+  get(child(dbRef, route)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      return(snapshot.val())
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+}
 
 export {
-  auth, 
-  createUserWithEmailAndPassword, 
+  auth,
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  db,
+  ref,
+  set,
+  writeUserData,
+  readData
 }
