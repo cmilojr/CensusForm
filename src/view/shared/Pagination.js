@@ -1,36 +1,95 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
+import { updatedb } from '../../../firebase';
 
 const Pagination = (props) => {
-    const {currentPage, navigation} = props
+    const { 
+        currentPage, 
+        navigation, 
+        checkFields, 
+        routeSave, 
+        objectSave 
+    } = props
 
     return (
         <View style={styles.container}>
-            <Button 
+            <Button
                 buttonStyle={currentPage === 1 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='1'
-                onPress={() => currentPage !== 1 && navigation.navigate("FormFirstPart")}/>
-            <Button 
+                onPress={() => {
+                    if (checkFields) {
+                        updatedb(routeSave, objectSave)
+                            .then(() => {
+                                currentPage !== 1 && navigation.navigate("FormFirstPart")
+                            })
+                            .catch((error) => {
+                                console.log("The write failed...")
+                                // TODO - show error
+                            });
+                    } else {
+                        // TODO show error
+                    }
+                }} />
+            <Button
                 buttonStyle={currentPage === 2 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='2'
-                onPress={() => currentPage !== 2 && navigation.navigate("FormSecondPart")}/>
-            <Button 
+                onPress={() => {
+                    if (checkFields) {
+                        updatedb(routeSave, objectSave)
+                            .then(() => {
+                                currentPage !== 2 && navigation.navigate("FormSecondPart")
+                            })
+                            .catch((error) => {
+                                console.log("The write failed...")
+                                // TODO - show error
+                            });
+                    } else {
+                        // TODO show error
+                    }   
+                }} />
+            <Button
                 buttonStyle={currentPage === 3 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='3'
-                onPress={() => currentPage !== 3 && navigation.navigate("FormThirdPart")}/>
-            <Button 
+                onPress={() => {
+                    if (checkFields) {
+                        updatedb(routeSave, objectSave)
+                            .then(() => {
+                                currentPage !== 3 && navigation.navigate("FormThirdPart")
+                            })
+                            .catch((error) => {
+                                console.log("The write failed...")
+                                // TODO - show error
+                            });
+                    } else {
+                        // TODO show error
+                    }
+                }} />
+            <Button
                 buttonStyle={currentPage === 4 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='4'
-                onPress={() => currentPage !== 4 && navigation.navigate("FormFourthPart")}/>
+                onPress={() => {
+                    if (checkFields) {
+                        updatedb(routeSave, objectSave)
+                            .then(() => {
+                                currentPage !== 4 && navigation.navigate("FormFourthPart")
+                            })
+                            .catch((error) => {
+                                console.log("The write failed...")
+                                // TODO - show error
+                            });
+                    } else {
+                        // TODO show error
+                    }
+                }} />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'space-around', 
-        flexDirection: 'row', 
+        justifyContent: 'space-around',
+        flexDirection: 'row',
         position: 'absolute',
         bottom: 100,
         width: '50%',

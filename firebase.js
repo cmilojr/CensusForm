@@ -8,6 +8,7 @@ import {
   onValue,
   child,
   get,
+  update
 } from "firebase/database";
 import {
   getAuth,
@@ -46,26 +47,35 @@ const writeUserData = (route, obj) => {
 
 const readData = (route) => {
   const dbRef = ref(getDatabase());
-  get(child(dbRef, route)).then((snapshot) => {
-    if (snapshot.exists()) {
-      console.log(snapshot.val());
-      return(snapshot.val())
-    } else {
-      console.log("No data available");
-    }
-  }).catch((error) => {
-    console.error(error);
+  return get(child(dbRef, route))
+}
+
+const savedb = (route, obj) => {
+  const db = getDatabase();
+  set(ref(db, route), obj)
+  .then(() => {
+    console.log("Data saved successfully!")
+  })
+  .catch((error) => {
+    console.log("The write failed...")
   });
 }
 
+const updatedb = (route, obj) => {
+  const db = getDatabase();
+  return update(ref(db, route), obj)
+}
+
+
 export {
-  auth,
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
-  db,
+  onAuthStateChanged,
+  writeUserData,
+  readData,
+  updatedb,
+  auth,
   ref,
   set,
-  writeUserData,
-  readData
+  db,
 }
