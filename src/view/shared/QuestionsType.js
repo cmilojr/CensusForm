@@ -30,7 +30,7 @@ const CheckAnswer = (props) => {
 }
 
 export const CheckQuestion = (props) => {
-    const {question, answers, setAswer, showOther} = props
+    const {question, answers, setAswer, showOther, selectedAnswer} = props
     const [selected, setSelected] = useState("")
     const [otherAnswer, setOtherAnswer] = useState("")
     
@@ -42,6 +42,11 @@ export const CheckQuestion = (props) => {
         setSelected("")
         setAswer(otherAnswer)
     }, [otherAnswer])
+
+    useEffect(() => {
+        setSelected(selectedAnswer)
+        console.log(selectedAnswer)
+    }, [])
 
     return (
         <View style={{
@@ -67,7 +72,7 @@ export const CheckQuestion = (props) => {
                     <CheckAnswer 
                         answerText={props}
                         setAswer={setSelected}
-                        isSelected={answers[key] === selected}
+                        isSelected={answers[key] === selected || answers[key] === selectedAnswer}
                         />
                 )
             })}

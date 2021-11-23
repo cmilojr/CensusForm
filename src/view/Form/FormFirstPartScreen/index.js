@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from 'react-native'
 import { TextQuestion } from '../../shared/QuestionsType'
 import Pagination from '../../shared/Pagination'
 import Toast from 'react-native-toast-message';
-import { writeUserData, readData, updatedb } from '../../../../firebase';
+import {readData} from '../../../../firebase';
 
 const FormFirstPartScreen = (props) => {
     const [formFirstPart, setFormFirstPart] = useState({
@@ -25,7 +25,9 @@ const FormFirstPartScreen = (props) => {
         readData("/barrio01")        
             .then((snapshot) => {
                 if (snapshot.exists()) {
-                    setFormFirstPart(snapshot.val().formFirstPart)
+                    if(snapshot.val().formFirstPart){
+                        setFormFirstPart(snapshot.val().formFirstPart)
+                    }
                 return(snapshot.val())
                 } else {
                 console.log("No data available");
@@ -36,7 +38,10 @@ const FormFirstPartScreen = (props) => {
     }, [])
 
     const checkFields = () => {
-        return formFirstPart.neighborhood !== "" && formFirstPart.street !== "" && formFirstPart.postalCode !== "" && formFirstPart.phone !== ""
+        return formFirstPart.neighborhood !== "" && 
+        formFirstPart.street !== "" && 
+        formFirstPart.postalCode !== "" && 
+        formFirstPart.phone !== ""
     }
 
     return (
@@ -84,7 +89,7 @@ const FormFirstPartScreen = (props) => {
                 currentPage={1} 
                 navigation={props.navigation} 
                 checkFields={checkFields} 
-                routeSave="/barrio01" // "/barrio01/persona01"
+                routeSave="/barrio01" // TODO - "/barrio01/persona01"
                 objectSave={{
                     formFirstPart:formFirstPart
                 }}/>

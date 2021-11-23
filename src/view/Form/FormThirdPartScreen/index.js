@@ -1,9 +1,41 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { View, Text, ScrollView} from 'react-native'
 import Pagination from '../../shared/Pagination'
 import {CheckQuestion, TextQuestion} from '../../shared/QuestionsType'
+import {readData} from '../../../../firebase';
 
 const FormThirdPartScreen = (props) => {
+    const [formThirdPart, setFormThirdPart] = useState({
+        kindOfDwelling: "",
+        houseAge: "",
+        numberOfBedrooms: "",
+        publicServices: "",
+    })
+
+    const checkFields = () => {
+        return formThirdPart.kindOfDwelling !== "" &&
+        formThirdPart.houseAge !== "" &&
+        formThirdPart.numberOfBedrooms !== "" &&
+        formThirdPart.publicServices !== ""
+    }
+
+    useEffect(() => {
+        readData("/barrio01")        
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    if(snapshot.val().formThirdPart !== undefined){
+                        setFormThirdPart(snapshot.val().formThirdPart)
+                        console.log(formThirdPart)
+                    }
+                return(snapshot.val())
+                } else {
+                console.log("No data available");
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
+    }, [])
+
     return (
         <View 
             style={{
@@ -21,8 +53,9 @@ const FormThirdPartScreen = (props) => {
                 width: '100%',
             }}>
                 <CheckQuestion 
-                    setAswer={val => console.log(val)}
+                    setAswer={(kindOfDwelling) => setFormThirdPart({...formThirdPart, kindOfDwelling})}
                     question="Type of dwelling"
+                    selectedAnswer={formThirdPart.kindOfDwelling}
                     answers={[
                         "Independent housing",
                         "Apartment",
@@ -38,7 +71,8 @@ const FormThirdPartScreen = (props) => {
                     />
                 <CheckQuestion 
                     question="How old is the house?"
-                    setAswer={val => console.log(val)}
+                    setAswer={(houseAge) => setFormThirdPart({...formThirdPart, houseAge})}
+                    selectedAnswer={formThirdPart.houseAge}
                     answers={[
                         "Less than 6 years",
                         "Between 6 and 10 years",
@@ -49,14 +83,15 @@ const FormThirdPartScreen = (props) => {
                         "Do not know, no answer",
                     ]} 
                     />
-                <TextQuestion 
+                <TextQuestion
                     question="Number of bedrooms"
                     placeholder="e.g. 2" 
-                    onChangeQuestion={() => console.log("object")} 
-                    valueQuestion={() => console.log("object")}/>
+                    onChangeQuestion={(numberOfBedrooms) => setFormThirdPart({ ...formThirdPart, numberOfBedrooms })}
+                    valueQuestion={formThirdPart.numberOfBedrooms} />
                 <CheckQuestion 
                     question="Access to public services?"
-                    setAswer={val => console.log(val)}
+                    setAswer={(publicServices) => setFormThirdPart({...formThirdPart, publicServices})}
+                    selectedAnswer={formThirdPart.publicServices}
                     answers={[
                         "Yes",
                         "No",
@@ -66,7 +101,14 @@ const FormThirdPartScreen = (props) => {
                     height: 150
                 }}/>
             </ScrollView>
-            <Pagination currentPage={3} navigation={props.navigation}/>
+            <Pagination 
+                currentPage={3} 
+                navigation={props.navigation} 
+                checkFields={checkFields} 
+                routeSave="/barrio01" // TODO - "/barrio01/persona01"
+                objectSave={{
+                    formThirdPart:formThirdPart
+                }}/>
         </View>
     )
 }

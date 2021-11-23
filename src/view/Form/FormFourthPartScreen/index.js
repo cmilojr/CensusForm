@@ -1,15 +1,38 @@
-import React, { useState } from 'react'
-import { View, Text} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Text } from 'react-native'
 import Pagination from '../../shared/Pagination'
-import {TextQuestion} from '../../shared/QuestionsType'
+import { TextQuestion } from '../../shared/QuestionsType'
+import {readData} from '../../../../firebase';
+
 const FormFourthPartScreen = (props) => {
-    const [feedBack, setFeedBack] = useState("")
+    const [formFourthPart, setFormFourthPart] = useState({
+        feedBack: ""
+    })
+    const checkFields = () => {
+        return formFourthPart.feedBack !== ""
+    }
+
+    useEffect(() => {
+        readData("/barrio01")        
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    if(snapshot.val().formFourthPart) {
+                        setFormFourthPart(snapshot.val().formFourthPart)
+                    }
+                return(snapshot.val())
+                } else {
+                console.log("No data available");
+                }
+            }).catch((error) => {
+                console.error(error);
+            });
+    }, [])
 
     return (
-        <View 
+        <View
             style={{
-                flex: 1, 
-                flexDirection: 'column', 
+                flex: 1,
+                flexDirection: 'column',
                 alignItems: 'center',
                 backgroundColor: '#bce8b6'
             }}>
@@ -19,14 +42,21 @@ const FormFourthPartScreen = (props) => {
                 margin: 20
             }}>Feedback</Text>
 
-            <TextQuestion 
+            <TextQuestion
                 question="Please entrer feedback about the census experience"
-                placeholder="e.g. Amazing experience" 
-                onChangeQuestion={(val) => setFeedBack(val)} 
-                valueQuestion={feedBack}
-                multiline={true}/>
-                            
-            <Pagination currentPage={4} navigation={props.navigation}/>
+                placeholder="e.g. Amazing experience"
+                onChangeQuestion={(feedBack) => setFormFourthPart({feedBack})}
+                valueQuestion={formFourthPart.feedBack}
+                multiline={true} />
+
+            <Pagination
+                currentPage={4}
+                navigation={props.navigation}
+                checkFields={checkFields}
+                routeSave="/barrio01" // TODO - "/barrio01/persona01"
+                objectSave={{
+                    formFourthPart: formFourthPart
+                }} />
         </View>
     )
 }
