@@ -45,7 +45,6 @@ export const CheckQuestion = (props) => {
 
     useEffect(() => {
         setSelected(selectedAnswer)
-        console.log(selectedAnswer)
     }, [])
 
     return (

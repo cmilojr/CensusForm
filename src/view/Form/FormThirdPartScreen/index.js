@@ -34,7 +34,6 @@ const FormThirdPartScreen = (props) => {
                 if (snapshot.exists()) {
                     if(snapshot.val().formThirdPart !== undefined){
                         setFormThirdPart(snapshot.val().formThirdPart)
-                        console.log(formThirdPart)
                     }
                 return(snapshot.val())
                 } else {

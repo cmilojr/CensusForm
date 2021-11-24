@@ -36,7 +36,6 @@ const FormSecondPartScreen = (props) => {
                 if (snapshot.exists()) {
                     if(snapshot.val().formSecondPart !== undefined) {
                         setFormSecondPart(snapshot.val().formSecondPart)
-                        console.log(snapshot.val().formSecondPart)
                     }
                 } else {
                 console.log("No data available");
