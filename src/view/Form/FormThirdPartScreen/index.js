@@ -29,7 +29,7 @@ const FormThirdPartScreen = (props) => {
     }
 
     useEffect(() => {
-        readData("/barrio01")        
+        readData()        
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     if(snapshot.val().formThirdPart !== undefined){
@@ -114,7 +114,6 @@ const FormThirdPartScreen = (props) => {
                 navigation={props.navigation} 
                 checkFields={checkFields} 
                 showToast={showToast}
-                routeSave="/barrio01" // TODO - "/barrio01/persona01"
                 objectSave={{
                     formThirdPart:formThirdPart
                 }}/>

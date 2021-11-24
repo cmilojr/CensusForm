@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, ScrollView} from 'react-native'
-import {CheckQuestion, TextQuestion} from '../shared/QuestionsType'
 import BackButton from '../shared/BackButton'
 
 const ChatBoxScreen = (props) => {

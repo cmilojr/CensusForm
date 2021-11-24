@@ -20,7 +20,7 @@ const Pagination = (props) => {
                 title='1'
                 onPress={() => {
                     if (checkFields()) {
-                        updatedb(routeSave, objectSave)
+                        updatedb(objectSave)
                             .then(() => {
                                 currentPage !== 1 && navigation.navigate("FormFirstPart")
                             })
@@ -36,7 +36,7 @@ const Pagination = (props) => {
                 title='2'
                 onPress={() => {
                     if (checkFields()) {
-                        updatedb(routeSave, objectSave)
+                        updatedb(objectSave)
                             .then(() => {
                                 currentPage !== 2 && navigation.navigate("FormSecondPart")
                             })
@@ -52,7 +52,7 @@ const Pagination = (props) => {
                 title='3'
                 onPress={() => {
                     if (checkFields()) {
-                        updatedb(routeSave, objectSave)
+                        updatedb(objectSave)
                             .then(() => {
                                 currentPage !== 3 && navigation.navigate("FormThirdPart")
                             })
@@ -68,7 +68,7 @@ const Pagination = (props) => {
                 title='4'
                 onPress={() => {
                     if (checkFields()) {
-                        updatedb(routeSave, objectSave)
+                        updatedb(objectSave)
                             .then(() => {
                                 currentPage !== 4 && navigation.navigate("FormFourthPart")
                             })

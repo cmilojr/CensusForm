@@ -22,7 +22,7 @@ const FormFirstPartScreen = (props) => {
     }
 
     useEffect(() => {
-        readData("/barrio01")        
+        readData()        
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     if(snapshot.val().formFirstPart){
@@ -90,7 +90,6 @@ const FormFirstPartScreen = (props) => {
                 navigation={props.navigation} 
                 checkFields={checkFields} 
                 showToast={showToast}
-                routeSave="/barrio01" // TODO - "/barrio01/persona01"
                 objectSave={{
                     formFirstPart:formFirstPart
                 }}/>

@@ -2,10 +2,36 @@ import React, { useState } from 'react'
 import { View, Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements'
 import { TextInput } from '../../shared/TextInput';
-import { writeUserData, readData, updatedb } from '../../../../firebase';
+import {codes, readData} from '../../../../firebase';
+import Toast from 'react-native-toast-message';
+
 const InitFormScreen = (props) => {
     const { navigation } = props
     const [censusCredentials, setCensusCredentials] = useState({ ECN: "", CFN: "" })
+
+    const showErrorForm = () => {
+        Toast.show({
+            type: 'error',
+            text1: 'Error: The codes ECN and CFN were not found.',
+            text2: 'Please check the information entered.'
+        });
+    }
+
+    const checkFormCodes = () => {
+        readData(censusCredentials.ECN+"/"+censusCredentials.CFN)        
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                codes(censusCredentials.ECN, censusCredentials.CFN)
+                navigation.navigate('FormFirstPart')
+            } else {
+                console.log("No data available");
+                showErrorForm()
+            }
+        }).catch((error) => {
+            console.error(error);
+            showErrorForm()
+        });
+    }
 
     return (
         <ScrollView>
@@ -34,7 +60,7 @@ const InitFormScreen = (props) => {
 
                         We do not collect personally identifiable information (name, address, e-mail address, social security number, or other personal unique identifiers) or business identifiable information on our web sites unless we specifically advise you that we are doing so.
                     </Text>
-{/* 
+
                     <View style={{
                         marginTop: 20
                     }}>
@@ -57,11 +83,11 @@ const InitFormScreen = (props) => {
                             rightIcon={'insert-drive-file'}
                         //onError={e => setIsErrorPassword(e)}
                         />
-                    </View> */}
+                    </View>
                 </View>
                 <Button
                     title='Start'
-                    onPress={() => navigation.navigate('FormFirstPart')} />
+                    onPress={() => {checkFormCodes()}}/>
                 <View style={{ height: 100 }} />
             </View>
         </ScrollView>

@@ -1,11 +1,9 @@
 // Import the functions you need from the SDKs you need
 import * as firebase from "firebase/app";
-import { initializeApp } from 'firebase/app';
 import {
   getDatabase,
   ref,
   set,
-  onValue,
   child,
   get,
   update
@@ -45,25 +43,23 @@ const writeUserData = (route, obj) => {
   set(ref(db, route), obj);
 }
 
-const readData = (route) => {
+let code
+const codes = (ECN, CFN) => {
+  code = ECN + "/" + CFN
+}
+
+const readData = (credentials) => {
   const dbRef = ref(getDatabase());
-  return get(child(dbRef, route))
+  console.log(credentials)
+  if(credentials){
+    return get(child(dbRef, credentials))
+  }
+  return get(child(dbRef, code))
 }
 
-const savedb = (route, obj) => {
+const updatedb = (obj) => {
   const db = getDatabase();
-  set(ref(db, route), obj)
-  .then(() => {
-    console.log("Data saved successfully!")
-  })
-  .catch((error) => {
-    console.log("The write failed...")
-  });
-}
-
-const updatedb = (route, obj) => {
-  const db = getDatabase();
-  return update(ref(db, route), obj)
+  return update(ref(db, code), obj)
 }
 
 
@@ -78,4 +74,5 @@ export {
   ref,
   set,
   db,
+  codes,
 }
