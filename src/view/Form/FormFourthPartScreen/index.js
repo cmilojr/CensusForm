@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import Pagination from '../../shared/Pagination'
 import { TextQuestion } from '../../shared/QuestionsType'
 import {readData} from '../../../../firebase';
+import Toast from 'react-native-toast-message';
 
 const FormFourthPartScreen = (props) => {
     const [formFourthPart, setFormFourthPart] = useState({
@@ -12,6 +13,14 @@ const FormFourthPartScreen = (props) => {
         return formFourthPart.feedBack !== ""
     }
 
+    const showToast = () => {
+        Toast.show({
+            type: 'error',
+            text1: 'Error',
+            text2: 'Please fill the empty fields.'
+        });
+    }
+    
     useEffect(() => {
         readData("/barrio01")        
             .then((snapshot) => {
@@ -53,6 +62,7 @@ const FormFourthPartScreen = (props) => {
                 currentPage={4}
                 navigation={props.navigation}
                 checkFields={checkFields}
+                showToast={showToast}
                 routeSave="/barrio01" // TODO - "/barrio01/persona01"
                 objectSave={{
                     formFourthPart: formFourthPart

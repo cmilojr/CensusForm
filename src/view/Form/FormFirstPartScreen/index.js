@@ -15,9 +15,9 @@ const FormFirstPartScreen = (props) => {
 
     const showToast = () => {
         Toast.show({
-            type: 'success',
-            text1: 'Hello',
-            text2: 'This is some something 👋'
+            type: 'error',
+            text1: 'Error',
+            text2: 'Please fill the empty fields.'
         });
     }
 
@@ -89,6 +89,7 @@ const FormFirstPartScreen = (props) => {
                 currentPage={1} 
                 navigation={props.navigation} 
                 checkFields={checkFields} 
+                showToast={showToast}
                 routeSave="/barrio01" // TODO - "/barrio01/persona01"
                 objectSave={{
                     formFirstPart:formFirstPart

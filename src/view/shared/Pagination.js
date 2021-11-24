@@ -9,7 +9,8 @@ const Pagination = (props) => {
         navigation, 
         checkFields, 
         routeSave, 
-        objectSave 
+        objectSave,
+        showToast,
     } = props
 
     return (
@@ -18,68 +19,64 @@ const Pagination = (props) => {
                 buttonStyle={currentPage === 1 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='1'
                 onPress={() => {
-                    if (checkFields) {
+                    if (checkFields()) {
                         updatedb(routeSave, objectSave)
                             .then(() => {
                                 currentPage !== 1 && navigation.navigate("FormFirstPart")
                             })
                             .catch((error) => {
-                                console.log("The write failed...")
-                                // TODO - show error
+                                showToast()
                             });
                     } else {
-                        // TODO show error
+                        showToast()
                     }
                 }} />
             <Button
                 buttonStyle={currentPage === 2 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='2'
                 onPress={() => {
-                    if (checkFields) {
+                    if (checkFields()) {
                         updatedb(routeSave, objectSave)
                             .then(() => {
                                 currentPage !== 2 && navigation.navigate("FormSecondPart")
                             })
                             .catch((error) => {
-                                console.log("The write failed...")
-                                // TODO - show error
+                                showToast()
                             });
                     } else {
-                        // TODO show error
+                        showToast()
                     }   
                 }} />
             <Button
                 buttonStyle={currentPage === 3 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='3'
                 onPress={() => {
-                    if (checkFields) {
+                    if (checkFields()) {
                         updatedb(routeSave, objectSave)
                             .then(() => {
                                 currentPage !== 3 && navigation.navigate("FormThirdPart")
                             })
                             .catch((error) => {
-                                console.log("The write failed...")
-                                // TODO - show error
+                                showToast()
                             });
                     } else {
-                        // TODO show error
+                        showToast()
                     }
                 }} />
             <Button
                 buttonStyle={currentPage === 4 ? styles.selectedStyle : styles.notSelectedStyle}
                 title='4'
                 onPress={() => {
-                    if (checkFields) {
+                    if (checkFields()) {
                         updatedb(routeSave, objectSave)
                             .then(() => {
                                 currentPage !== 4 && navigation.navigate("FormFourthPart")
                             })
                             .catch((error) => {
-                                console.log("The write failed...")
-                                // TODO - show error
+                                showToast()
                             });
                     } else {
-                        // TODO show error
+                        showToast()
                     }
                 }} />
         </View>

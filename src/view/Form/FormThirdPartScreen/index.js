@@ -3,6 +3,7 @@ import { View, Text, ScrollView} from 'react-native'
 import Pagination from '../../shared/Pagination'
 import {CheckQuestion, TextQuestion} from '../../shared/QuestionsType'
 import {readData} from '../../../../firebase';
+import Toast from 'react-native-toast-message';
 
 const FormThirdPartScreen = (props) => {
     const [formThirdPart, setFormThirdPart] = useState({
@@ -11,6 +12,14 @@ const FormThirdPartScreen = (props) => {
         numberOfBedrooms: "",
         publicServices: "",
     })
+
+    const showToast = () => {
+        Toast.show({
+            type: 'error',
+            text1: 'Error',
+            text2: 'Please fill the empty fields.'
+        });
+    }
 
     const checkFields = () => {
         return formThirdPart.kindOfDwelling !== "" &&
@@ -105,6 +114,7 @@ const FormThirdPartScreen = (props) => {
                 currentPage={3} 
                 navigation={props.navigation} 
                 checkFields={checkFields} 
+                showToast={showToast}
                 routeSave="/barrio01" // TODO - "/barrio01/persona01"
                 objectSave={{
                     formThirdPart:formThirdPart
