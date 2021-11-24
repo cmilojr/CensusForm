@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {KeyboardTypeOptions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Input} from 'react-native-elements';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 
@@ -19,6 +19,7 @@ export const TextInput = (props) => {
     onRightIconPress,
     onLefttIconPress,
     multiline,
+    autoCapitalize
   } = props
 
   const _ref = useRef(null);
@@ -174,6 +175,7 @@ export const TextInput = (props) => {
       value={value}
       errorMessage={error.isError ? error.message : ''}
       onChangeText={onChangeText}
+      autoCapitalize={!autoCapitalize ? "none" : "sentences"}
       editable={editable}
       secureTextEntry={secureTextEntry}
       multiline={multiline ? true : false}

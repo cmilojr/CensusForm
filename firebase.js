@@ -12,7 +12,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -51,7 +52,7 @@ const codes = (ECN, CFN) => {
 const readData = (credentials) => {
   const dbRef = ref(getDatabase());
   console.log(credentials)
-  if(credentials){
+  if (credentials) {
     return get(child(dbRef, credentials))
   }
   return get(child(dbRef, code))
@@ -62,6 +63,10 @@ const updatedb = (obj) => {
   return update(ref(db, code), obj)
 }
 
+const signout = () => {
+  const auth = getAuth();
+  return signOut(auth)
+}
 
 export {
   createUserWithEmailAndPassword,
@@ -75,4 +80,5 @@ export {
   set,
   db,
   codes,
+  signout,
 }

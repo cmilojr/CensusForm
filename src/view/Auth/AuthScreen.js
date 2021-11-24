@@ -4,10 +4,18 @@ import { Button } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from '../shared/TextInput'
 import { signInWithEmailAndPassword, auth } from '../../../firebase';
+import Toast from 'react-native-toast-message';
 
 const AuthScreen = (props) => {
     const [logginInfo, setLogginInfo] = useState({ email: '', password: '' });
-    const [showPassword, setShowPassword] = useState(false);
+
+    const showError = (message) => {
+        Toast.show({
+            type: 'error',
+            text1: 'Error: The codes ECN and CFN were not found.',
+            text2: message
+        });
+    }
 
     const onSummit = () => {
         signInWithEmailAndPassword(auth, logginInfo.email, logginInfo.password)
@@ -19,6 +27,7 @@ const AuthScreen = (props) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                showError(errorMessage)
             });
     }
 
@@ -46,6 +55,7 @@ const AuthScreen = (props) => {
                     <TextInput
                         placeholder="Email"
                         type="text"
+                        autoCapitalize={false}
                         onChangeText={event => setLogginInfo({ ...logginInfo, userName: event })}
                         value={logginInfo.userName}
                         rightIcon={'tag'}
@@ -54,6 +64,8 @@ const AuthScreen = (props) => {
                     <TextInput
                         placeholder="Password"
                         type="password"
+                        autoCapitalize={false}
+                        secureTextEntry={true}
                         onChangeText={event => setLogginInfo({ ...logginInfo, password: event })}
                         value={logginInfo.password}
                         rightIcon={'insert-drive-file'}

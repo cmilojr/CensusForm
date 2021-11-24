@@ -4,11 +4,21 @@ import { Button } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from '../shared/TextInput'
 import { auth, createUserWithEmailAndPassword } from "../../../firebase";
+import Toast from 'react-native-toast-message';
 
 const RegisterScreen = (props) => {
     const [registerInfo, setRegisterInfo] = useState({ email: '', password: '' });
+
+    const showError = (message) => {
+        Toast.show({
+            type: 'error',
+            text1: 'Error: The codes ECN and CFN were not found.',
+            text2: message
+        });
+    }
+
     const onSummit = () => {
-            createUserWithEmailAndPassword(auth, registerInfo.email, registerInfo.password)
+        createUserWithEmailAndPassword(auth, registerInfo.email, registerInfo.password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
@@ -17,6 +27,7 @@ const RegisterScreen = (props) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                showError(errorMessage)
             })
         props.navigation.goBack()
     }
@@ -45,6 +56,7 @@ const RegisterScreen = (props) => {
                     <TextInput
                         placeholder="Email"
                         type="text"
+                        autoCapitalize={false}
                         onChangeText={event => setRegisterInfo({ ...registerInfo, email: event })}
                         value={registerInfo.email}
                         rightIcon={'tag'}
@@ -53,6 +65,7 @@ const RegisterScreen = (props) => {
                     <TextInput
                         placeholder="Password"
                         type="password"
+                        autoCapitalize={false}
                         onChangeText={event => setRegisterInfo({ ...registerInfo, password: event })}
                         value={registerInfo.password}
                         rightIcon={'insert-drive-file'}
@@ -64,24 +77,13 @@ const RegisterScreen = (props) => {
                         containerStyle={{ height: 40 }}
                         fontColor="textBgPrimary"
                     />
+                    <Button
+                        title="Back"
+                        onPress={() => props.navigation.goBack()}
+                        containerStyle={{ height: 40, marginTop: 20 }}
+                        fontColor="textBgPrimary"
+                    />
                 </View>
-                {/* <View style={{
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                }}>
-                    <Button
-                        title="FAQ"
-                        onPress={() => setShowFAQ(true)}
-                        containerStyle={{height: 40, margin: 20}}
-                        fontColor="textBgPrimary"
-                    />
-                    <Button
-                        title="Heling Desk"
-                        onPress={() => setShowHD(true)}
-                        containerStyle={{height: 40, margin: 20}}
-                        fontColor="textBgPrimary"
-                    />
-                </View> */}
             </View>
         </KeyboardAwareScrollView>
     )
