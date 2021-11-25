@@ -4,6 +4,7 @@ import Pagination from '../../shared/Pagination'
 import { TextQuestion } from '../../shared/QuestionsType'
 import {readData} from '../../../../firebase';
 import Toast from 'react-native-toast-message';
+import { Button } from 'react-native-elements'
 
 const FormFourthPartScreen = (props) => {
     const [formFourthPart, setFormFourthPart] = useState({
@@ -57,7 +58,9 @@ const FormFourthPartScreen = (props) => {
                 onChangeQuestion={(feedBack) => setFormFourthPart({feedBack})}
                 valueQuestion={formFourthPart.feedBack}
                 multiline={true} />
-
+            <Button
+                title='Finish'
+                onPress={() => { props.navigation.navigate("LastForm") }} />
             <Pagination
                 currentPage={4}
                 navigation={props.navigation}
