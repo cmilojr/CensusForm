@@ -88,18 +88,22 @@ const AuthScreen = (props) => {
                         containerStyle={{ height: 40, margin: 20 }}
                         fontColor="textBgPrimary"
                     />
-                    {/* <Button
+                     <Button
                         title="FAQ"
-                        onPress={() => setShowFAQ(true)}
+                        //onPress={() => setShowFAQ(true)}
+                        //onPress={() => props.navigation.navigate("../FAQ/FAQScreen")}
+                        onPress={() => props.navigation.navigate("FAQScreen")}
                         containerStyle={{height: 40, margin: 20}}
                         fontColor="textBgPrimary"
                     />
                     <Button
-                        title="Heling Desk"
-                        onPress={() => setShowHD(true)}
+                        title="Helping Desk"
+                        //onPress={() => setShowHD(true)}
+                        //onPress={() => props.navigation.navigate("../ChatBox/ChatBoxScreen")} 
+                        onPress={() => props.navigation.navigate("ChatBoxScreen")}                       
                         containerStyle={{height: 40, margin: 20}}
                         fontColor="textBgPrimary"
-                    /> */}
+                    /> 
                 </View>
             </View>
         </KeyboardAwareScrollView>

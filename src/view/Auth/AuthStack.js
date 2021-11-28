@@ -31,6 +31,13 @@ const AuthStack = () => {
                     headerShown: false,
                 }}
             />
+            <Stack.Screen
+                name="ChatBoxScreen"
+                component={ChatBoxScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
         </Stack.Navigator>
     );
 };

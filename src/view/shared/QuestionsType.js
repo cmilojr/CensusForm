@@ -106,8 +106,8 @@ export const TextQuestion = (props) => {
             marginBottom: 10,
         }}>
             <Text style={{
-                marginHorizontal: 20,
-                marginTop: 10,
+                marginHorizontal: 2,
+                marginTop: 1,
                 fontSize: 15,
                 fontWeight: 'bold'
             }}>

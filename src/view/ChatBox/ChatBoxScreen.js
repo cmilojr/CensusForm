@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, ScrollView} from 'react-native'
 import BackButton from '../shared/BackButton'
+import {TextQuestion} from '../shared/QuestionsType'
 
 const ChatBoxScreen = (props) => {
     const {setShowHD, showBack} = props
@@ -20,7 +21,6 @@ const ChatBoxScreen = (props) => {
             <ScrollView style={{
                 width: '100%',
             }}>
-
                 <View style={{
                     height: 150
                 }}/>

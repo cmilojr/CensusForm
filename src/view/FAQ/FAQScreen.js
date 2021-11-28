@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, ScrollView} from 'react-native'
 import {TextQuestion} from '../shared/QuestionsType'
 import BackButton from '../shared/BackButton'
+import { Button } from 'react-native-elements'
 
 const FAQScreen = (props) => {
     const {setShowFAQ, showBack} = props
@@ -16,10 +17,10 @@ const FAQScreen = (props) => {
             <Text style={{
                 fontWeight: 'bold',
                 fontSize: 32,
-                margin: 20
+                margin: 5
             }}>Frequently Asked Questions </Text>
             <ScrollView style={{
-                width: '100%',
+                width: '90%',
             }}>
                 <TextQuestion 
                     question="Why my participation is important?"
@@ -47,14 +48,20 @@ const FAQScreen = (props) => {
                     If you have additional issues or concerns that are not addressed above, please contact the Office of the Respondent Advocate."
                     editable={false}
                     multiline={true}/>
+                <Button
+                    title="Back"
+                    onPress={() => props.navigation.goBack()}
+                    containerStyle={{ height: 40, marginTop: 20 }}
+                    fontColor="textBgPrimary"
+                    />
                 <View style={{
-                    height: 150
+                    height: 250
+                    
                 }}/>
-            </ScrollView>
-            {
-                showBack && <BackButton setBackAction={setShowFAQ} />
-            }
-            
+                </ScrollView>
+                {
+                    showBack && <BackButton setBackAction={setShowFAQ} />      
+                }  
         </View>
     )
 }
