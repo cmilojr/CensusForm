@@ -18,7 +18,7 @@ const InitFormScreen = (props) => {
     }
 
     const checkFormCodes = () => {
-        readData(censusCredentials.ECN)        
+        readData("users/"+censusCredentials.ECN)        
         .then((snapshot) => {
             if (snapshot.exists()) {
                 codes(censusCredentials.ECN, censusCredentials.CFN)

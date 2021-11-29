@@ -86,13 +86,13 @@ const writeUserData = (route, obj) => {
 
 let code
 const codes = (ECN, CFN) => {
-  code = ECN // + "/" + CFN
+  code = "users/"+ECN // + "/" + CFN
 }
 
 const readData = (credentials) => {
   const dbRef = ref(getDatabase());
-  console.log(credentials)
   if (credentials) {
+    console.log(credentials)
     return get(child(dbRef, credentials))
   }
   return get(child(dbRef, code))
