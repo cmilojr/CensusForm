@@ -18,10 +18,8 @@ const InitFormScreen = (props) => {
     }
 
     const checkFormCodes = () => {
-        // readData(censusCredentials.ECN+"/"+censusCredentials.CFN) 
         readData(censusCredentials.ECN)        
         .then((snapshot) => {
-            //if (snapshot.exists()) {
             if (snapshot.exists()) {
                 codes(censusCredentials.ECN, censusCredentials.CFN)
                 navigation.navigate('FormFirstPart')

@@ -86,7 +86,7 @@ const writeUserData = (route, obj) => {
 
 let code
 const codes = (ECN, CFN) => {
-  code = ECN + "/" + CFN
+  code = ECN // + "/" + CFN
 }
 
 const readData = (credentials) => {
