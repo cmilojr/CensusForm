@@ -28,7 +28,6 @@ const FormFirstPartScreen = (props) => {
                     if(snapshot.val().formFirstPart){
                         setFormFirstPart(snapshot.val().formFirstPart)
                     }
-                return(snapshot.val())
                 } else {
                 console.log("No data available");
                 }

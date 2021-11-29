@@ -3,7 +3,7 @@ import { View, StyleSheet, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from '../shared/TextInput'
-import { signInWithEmailAndPassword, auth } from '../../../firebase';
+import { signin } from '../../../firebase';
 import Toast from 'react-native-toast-message';
 
 const AuthScreen = (props) => {
@@ -12,17 +12,16 @@ const AuthScreen = (props) => {
     const showError = (message) => {
         Toast.show({
             type: 'error',
-            text1: 'Error: The codes ECN and CFN were not found.',
+            text1: 'Error: user does not exists',
             text2: message
         });
     }
 
     const onSummit = () => {
-        signInWithEmailAndPassword(auth, logginInfo.email, logginInfo.password)
+        signin(logginInfo.email, logginInfo.password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -43,7 +42,7 @@ const AuthScreen = (props) => {
                     <View style={{
                         alignItems: 'center'
                     }}>
-                        
+
                         <Image
                             style={{
                                 width: 250,
@@ -51,15 +50,15 @@ const AuthScreen = (props) => {
                             }}
                             source={require('../../../assets/LOGO.png')}
                         />
-                        
+
                     </View>
 
                     <TextInput
                         placeholder="Email"
                         type="text"
                         autoCapitalize={false}
-                        onChangeText={event => setLogginInfo({ ...logginInfo, userName: event })}
-                        value={logginInfo.userName}
+                        onChangeText={event => setLogginInfo({ ...logginInfo, email: event })}
+                        value={logginInfo.email}
                         rightIcon={'tag'}
                     //onError={e => setIsErroruserName(e)}
                     />
@@ -90,22 +89,22 @@ const AuthScreen = (props) => {
                         containerStyle={{ height: 40, margin: 20 }}
                         fontColor="textBgPrimary"
                     />
-                     <Button
+                    <Button
                         title="FAQ"
                         //onPress={() => setShowFAQ(true)}
                         //onPress={() => props.navigation.navigate("../FAQ/FAQScreen")}
                         onPress={() => props.navigation.navigate("FAQScreen")}
-                        containerStyle={{height: 40, margin: 20}}
+                        containerStyle={{ height: 40, margin: 20 }}
                         fontColor="textBgPrimary"
                     />
                     <Button
                         title="Helping Desk"
                         //onPress={() => setShowHD(true)}
                         //onPress={() => props.navigation.navigate("../ChatBox/ChatBoxScreen")} 
-                        onPress={() => props.navigation.navigate("ChatBoxScreen")}                       
-                        containerStyle={{height: 40, margin: 20}}
+                        onPress={() => props.navigation.navigate("ChatBoxScreen")}
+                        containerStyle={{ height: 40, margin: 20 }}
                         fontColor="textBgPrimary"
-                    /> 
+                    />
                 </View>
             </View>
         </KeyboardAwareScrollView>

@@ -4,7 +4,6 @@ import AuthScreen from './AuthScreen';
 import RegisterScreen from './RegisterScreen';
 import FAQScreen from '../FAQ/FAQScreen';
 import ChatBoxScreen from '../ChatBox/ChatBoxScreen';
-import FormStack from '../Form/FormStack';
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
