@@ -51,7 +51,7 @@ const FormSecondPartScreen = (props) => {
             flex: 1, 
             flexDirection: 'column', 
             alignItems: 'center',
-            backgroundColor: '#bce8b6'
+            backgroundColor: '#ababab'
         }}>
             <Text style={{
                 fontWeight: 'bold',

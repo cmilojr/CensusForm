@@ -18,8 +18,10 @@ const InitFormScreen = (props) => {
     }
 
     const checkFormCodes = () => {
-        readData(censusCredentials.ECN+"/"+censusCredentials.CFN)        
+        // readData(censusCredentials.ECN+"/"+censusCredentials.CFN) 
+        readData(censusCredentials.ECN)        
         .then((snapshot) => {
+            //if (snapshot.exists()) {
             if (snapshot.exists()) {
                 codes(censusCredentials.ECN, censusCredentials.CFN)
                 navigation.navigate('FormFirstPart')
@@ -40,7 +42,7 @@ const InitFormScreen = (props) => {
                     flex: 1,
                     flexDirection: 'column',
                     alignItems: 'center',
-                    backgroundColor: '#bce8b6'
+                    backgroundColor: '#ababab'
                 }}>
                 <View style={{
                     backgroundColor: 'white',

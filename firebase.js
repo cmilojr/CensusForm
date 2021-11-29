@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import * as firebase from "firebase/app";
+
 //import firebase from 'firebase/compat/app';
 import {
   getDatabase,
@@ -39,7 +40,45 @@ if (firebase.getApps().length === 0) {
 }
 
 const auth = getAuth()
-const db = getDatabase(app);
+const db = getDatabase(app); 
+
+//-------------------
+/*
+
+// Refernece contactInfo collections
+let contactInfo = firebase.database().ref("infos");
+
+// Listen for a submit
+document.querySelector(".contact-form").addEventListener("submit", submitForm);
+
+function submitForm(e) {
+  e.preventDefault();
+
+  //   Get input Values
+  let name = document.querySelector(".name").value;
+  let email = document.querySelector(".email").value;
+  let phone = document.querySelector(".phone").value;
+  let message = document.querySelector(".message").value;
+  console.log(name, email, message);
+
+  saveContactInfo(name, email, phone, message);
+
+  document.querySelector(".contact-form").reset();
+}
+
+// Save infos to Firebase
+function saveContactInfo(name, email, phone, message) {
+  let newContactInfo = contactInfo.push();
+
+  newContactInfo.set({
+    name: name,
+    email: email,
+    phone: phone,
+    message: message,
+  });
+}
+*/
+//------------------
 
 const writeUserData = (route, obj) => {
   set(ref(db, route), obj);

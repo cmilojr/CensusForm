@@ -51,6 +51,13 @@ const RegisterScreen = (props) => {
                             }}
                             source={require('../../../assets/LOGO.png')}
                         />
+                        <Image
+                            style={{
+                                width: 1000,
+                                height: 500,
+                            }}
+                            source={require('../../../assets/avisos-01.png')}
+                        />
                     </View>
 
                     <TextInput
@@ -94,7 +101,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        backgroundColor: '#bce8b6'
+        backgroundColor: '#ababab'
     },
     content: {
         width: '100%',

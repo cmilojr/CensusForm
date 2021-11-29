@@ -4,6 +4,7 @@ import {TextQuestion} from '../shared/QuestionsType'
 import BackButton from '../shared/BackButton'
 import { Button } from 'react-native-elements'
 
+
 const FAQScreen = (props) => {
     const {setShowFAQ, showBack} = props
     return (
@@ -12,7 +13,7 @@ const FAQScreen = (props) => {
                 flex: 1, 
                 flexDirection: 'column', 
                 alignItems: 'center',
-                backgroundColor: '#bce8b6'
+                backgroundColor: '#d5d5d5'
             }}>
             <Text style={{
                 fontWeight: 'bold',
@@ -20,7 +21,7 @@ const FAQScreen = (props) => {
                 margin: 5
             }}>Frequently Asked Questions </Text>
             <ScrollView style={{
-                width: '90%',
+                width: '95%',
             }}>
                 <TextQuestion 
                     question="Why my participation is important?"
@@ -51,7 +52,7 @@ const FAQScreen = (props) => {
                 <Button
                     title="Back"
                     onPress={() => props.navigation.goBack()}
-                    containerStyle={{ height: 40, marginTop: 20 }}
+                    containerStyle={{ height: 45, marginTop: 20 }}
                     fontColor="textBgPrimary"
                     />
                 <View style={{

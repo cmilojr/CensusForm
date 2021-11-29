@@ -43,6 +43,7 @@ const AuthScreen = (props) => {
                     <View style={{
                         alignItems: 'center'
                     }}>
+                        
                         <Image
                             style={{
                                 width: 250,
@@ -50,6 +51,7 @@ const AuthScreen = (props) => {
                             }}
                             source={require('../../../assets/LOGO.png')}
                         />
+                        
                     </View>
 
                     <TextInput
@@ -115,7 +117,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        backgroundColor: '#bce8b6'
+        backgroundColor: '#ababab'
     },
     content: {
         width: '100%',

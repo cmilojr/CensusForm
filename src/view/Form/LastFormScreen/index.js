@@ -21,7 +21,7 @@ const LastFormScreen = (props) => {
                 flex: 1,
                 flexDirection: 'column',
                 alignItems: 'center',
-                backgroundColor: '#bce8b6',
+                backgroundColor: '#ababab',
                 height: '100%'
             }}>
             <View style={{
