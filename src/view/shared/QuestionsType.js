@@ -11,7 +11,7 @@ const CheckAnswer = (props) => {
             alignItems: 'center',
             marginHorizontal: 10,
             marginBottom: 5,
-            borderWidth: 1,
+            borderWidth: 5,
             borderColor: 'gray',
             borderRadius: 6,
             padding: 10
@@ -49,20 +49,21 @@ export const CheckQuestion = (props) => {
 
     return (
         <View style={{
-            marginHorizontal: 20,
-            borderWidth: 1,
-            borderRadius: 10,
+            marginHorizontal: 10,
+            borderWidth: 5,
+            borderRadius: 5,
             backgroundColor: "white",
             borderColor: '#a3a2a0',
             paddingBottom: 10,
             marginBottom: 10,
         }}>
             <Text style={{
-                marginHorizontal: 20,
+                marginHorizontal: 10,
                 marginTop: 10,
                 fontSize: 15,
                 fontWeight: 'bold',
-                marginVertical: 5,
+                marginVertical: 10,
+                textareaRows: 5,
             }}>
                 {question}
             </Text>

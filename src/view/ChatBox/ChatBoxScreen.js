@@ -5,14 +5,23 @@ import { TextQuestion } from "../shared/QuestionsType";
 import { Button } from "react-native-elements";
 
 const ChatBoxScreen = (props) => {
-    const { setShowHD, showBack } = props;
-    return (
+  const { setShowHD, showBack } = props;
+  return (
+    <View
+      style={{
+        flex: 1,
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor: "#d5d5d5",
+      }}
+    >
       <View
         style={{
-          flex: 1,
-          flexDirection: "column",
+          backgroundColor: "white",
+          margin: 20,
+          padding: 20,
+          borderRadius: 20,
           alignItems: "center",
-          backgroundColor: "#d5d5d5",
         }}
       >
         <Text
@@ -42,6 +51,7 @@ const ChatBoxScreen = (props) => {
           <View
             style={{
               height: 150,
+              alignItems: "center",
             }}
           />
 
@@ -54,7 +64,8 @@ const ChatBoxScreen = (props) => {
         </ScrollView>
         {showBack && <BackButton setBackAction={setShowHD} />}
       </View>
-    );
+    </View>
+  );
 };
 
 export default ChatBoxScreen;

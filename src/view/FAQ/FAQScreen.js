@@ -23,11 +23,12 @@ const FAQScreen = (props) => {
             <ScrollView style={{
                 width: '95%',
             }}>
-                <TextQuestion 
+                <TextQuestion
                     question="Why my participation is important?"
                     valueQuestion="Your answers help produce accurate, reliable statistics on employment, infrastructure, education, economic opportunities, and other important characteristics of your community. This information helps policymakers, local officials, companies, and organizations to understand and assess the resources and needs of people, places, and businesses across the country. None of this would be possible without your participation."
                     editable={false}
-                    multiline={true}/>
+                    multiline={true}
+                    rows={10}/>
                 <TextQuestion 
                     question="How can I complete this survey?"
                     valueQuestion="In addition to conducting the 2020 Census, the Census Bureau oversees many surveys that are generally completed in-person, by mail, online, or by telephone. For more information about completing a particular survey, you can search the Census list of surveys and read more about what your options are for responding."

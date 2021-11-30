@@ -58,6 +58,15 @@ const RegisterScreen = (props) => {
                             }}
                             source={require('../../../assets/avisos-01.png')}
                         />
+
+                        <p><center>
+                        To create an account you will need your email, the ECN code and CFN code provided in the Census Notification.
+                        </center></p>
+                        {" "}
+                        <p><center>
+                        Remember to store your password in a safe place and never share it with anyone, no one from the Census Center will ever ask you for your password at any moment.
+                        In case of any irregularities please contact a Census Agent immediately. 
+                        </center></p>
                     </View>
 
                     <TextInput
