@@ -21,8 +21,14 @@ const InitFormScreen = (props) => {
         readData("users/"+censusCredentials.ECN)        
         .then((snapshot) => {
             if (snapshot.exists()) {
-                codes(censusCredentials.ECN, censusCredentials.CFN)
-                navigation.navigate('FormFirstPart')
+                
+                if(snapshot.val().COMPLETED === true) {
+                    console.log(snapshot.val().COMPLETED)
+                    navigation.navigate('LastForm')    
+                } else {
+                    codes(censusCredentials.ECN, censusCredentials.CFN)
+                    navigation.navigate('FormFirstPart')
+                }
             } else {
                 console.log("No data available");
                 showErrorForm()

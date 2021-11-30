@@ -3,8 +3,9 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 import { Button } from 'react-native-elements'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { TextInput } from '../shared/TextInput'
-import { auth, createUserWithEmailAndPassword } from "../../../firebase";
+import { createUser } from "../../../firebase";
 import Toast from 'react-native-toast-message';
+import { Platform } from 'react-native';
 
 const RegisterScreen = (props) => {
     const [registerInfo, setRegisterInfo] = useState({ email: '', password: '' });
@@ -18,11 +19,11 @@ const RegisterScreen = (props) => {
     }
 
     const onSummit = () => {
-        createUserWithEmailAndPassword(auth, registerInfo.email, registerInfo.password)
+        createUser(registerInfo.email, registerInfo.password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                setRegisterInfoInfo({ email: '', password: '' })
+                setRegisterInfo({ email: '', password: '' })
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -52,9 +53,9 @@ const RegisterScreen = (props) => {
                             source={require('../../../assets/LOGO.png')}
                         />
                         <Image
-                            style={{
-                                width: 1000,
-                                height: 500,
+                            style={{ //280 - 150
+                                width: Platform.OS === 'ios' || Platform.OS === 'android' ? 280 : 1000,
+                                height: Platform.OS === 'ios' || Platform.OS === 'android' ? 150 : 500,
                             }}
                             source={require('../../../assets/avisos-01.png')}
                         />

@@ -2,20 +2,9 @@ import React from 'react'
 import { View, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements'
 import { signout } from '../../../../firebase';
-import Toast from 'react-native-toast-message';
 
-const LastFormScreen = (props) => {
-
-    const showErrorForm = () => {
-        Toast.show({
-            type: 'error',
-            text1: 'Error: The codes ECN and CFN were not found.',
-            text2: 'Please check the information entered.'
-        });
-    }
-
+const LastFormScreen = () => {
     return (
-
         <View
             style={{
                 flex: 1,

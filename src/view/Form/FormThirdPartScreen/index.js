@@ -35,7 +35,6 @@ const FormThirdPartScreen = (props) => {
                     if(snapshot.val().formThirdPart !== undefined){
                         setFormThirdPart(snapshot.val().formThirdPart)
                     }
-                return(snapshot.val())
                 } else {
                 console.log("No data available");
                 }
